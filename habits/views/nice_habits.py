@@ -10,7 +10,7 @@ class NiceHabitCreateAPIView(CreateAPIView):
 
     def perform_create(self, serializer):
         new_nice_habit = serializer.save()
-        new_nice_habit.user = self.request.user
+        new_nice_habit.owner = self.request.user
         new_nice_habit.save()
 
 

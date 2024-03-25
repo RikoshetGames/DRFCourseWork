@@ -3,7 +3,8 @@ from django.urls import path
 from habits.apps import HabitsConfig
 from habits.views.habits import HabitListAPIView, HabitDetailAPIView, HabitCreateAPIView, HabitUpdateAPIView, \
     HabitDeleteAPIView
-from habits.views.nice_habit import NiceHabitListAPIView, NiceHabitDetailAPIView, NiceHabitCreateAPIView, \
+
+from habits.views.nice_habits import NiceHabitListAPIView, NiceHabitDetailAPIView, NiceHabitCreateAPIView, \
     NiceHabitUpdateAPIView, NiceHabitDeleteAPIView
 
 app_name = HabitsConfig.name
