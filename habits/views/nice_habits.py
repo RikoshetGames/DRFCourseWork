@@ -1,12 +1,16 @@
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from habits.models import NiceHabit
+from habits.paginations import HabitsPagination
 from habits.serializers.nice_habits import NiceHabitSerializer
+from users.permissions import IsOwner
 
 
 class NiceHabitCreateAPIView(CreateAPIView):
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         new_nice_habit = serializer.save()
@@ -17,6 +21,8 @@ class NiceHabitCreateAPIView(CreateAPIView):
 class NiceHabitListAPIView(ListAPIView):
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
+    pagination_class = HabitsPagination
+    permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
         user = self.request.user
@@ -27,13 +33,16 @@ class NiceHabitListAPIView(ListAPIView):
 class NiceHabitDetailAPIView(RetrieveAPIView):
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitUpdateAPIView(UpdateAPIView):
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitDeleteAPIView(DestroyAPIView):
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
+    permission_classes = [IsAuthenticated, IsOwner]

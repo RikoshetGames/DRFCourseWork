@@ -44,9 +44,12 @@ class SignAssociatedNiceHabitsValidator:
 
 INTERVAL_MAPPING = {
     'once_a_day': 1,
-    'once_a_week': 7,
-    'once_a_month': 30,
-    'once_a_year': 365,
+    'once_a_two_day': 2,
+    'once_a_three_day': 3,
+    'once_a_four_day': 4,
+    'once_a_five_day': 5,
+    'once_a_six_day': 6,
+    'once_a_seven_day': 7,
 }
 
 
