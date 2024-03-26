@@ -8,6 +8,7 @@ from users.permissions import IsOwner
 
 
 class NiceHabitCreateAPIView(CreateAPIView):
+    """Класс создания приятной привычки"""
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
     permission_classes = [IsAuthenticated]
@@ -19,6 +20,7 @@ class NiceHabitCreateAPIView(CreateAPIView):
 
 
 class NiceHabitListAPIView(ListAPIView):
+    """Класс получения списка приятных привычек, доступных только для владельца"""
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
     pagination_class = HabitsPagination
@@ -31,18 +33,21 @@ class NiceHabitListAPIView(ListAPIView):
 
 
 class NiceHabitDetailAPIView(RetrieveAPIView):
+    """Класс получения конкретной приятной привычки"""
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitUpdateAPIView(UpdateAPIView):
+    """Класс обновления приятной привычки"""
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitDeleteAPIView(DestroyAPIView):
+    """Класс удаления приятной привычки"""
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]

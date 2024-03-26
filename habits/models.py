@@ -15,6 +15,7 @@ INTERVAL_CHOICES = [
 
 
 class NiceHabit(models.Model):
+    """Модель приятный привычки"""
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
     sign_nice_habit = models.BooleanField(default=False, verbose_name='Признак приятной привычки')
     action = models.CharField(max_length=100, verbose_name='Действие')
@@ -28,6 +29,7 @@ class NiceHabit(models.Model):
 
 
 class Habits(models.Model):
+    """Модель привычки"""
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Создатель привычки')
     place = models.CharField(max_length=100, verbose_name='Место выполнения')
     time = models.TimeField(verbose_name='Время начала выполнения')
