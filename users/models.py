@@ -3,7 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-
+    """Модель пользователя"""
     username = None
     name = models.CharField(max_length=100, verbose_name='Имя')
     email = models.EmailField(unique=True, verbose_name='Email')
