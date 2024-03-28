@@ -21,7 +21,9 @@ class Migration(migrations.Migration):
                                            serialize=False, verbose_name='ID')),
                 ('sign_nice_habit', models.BooleanField(default=False, verbose_name='Признак приятной привычки')),
                 ('action', models.CharField(max_length=100, verbose_name='Действие')),
-                ('owner', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                ('owner', models.ForeignKey(blank=True, null=True,
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL,
+                verbose_name='Пользователь')),
             ],
             options={
                 'verbose_name': 'Приятная привычка',
