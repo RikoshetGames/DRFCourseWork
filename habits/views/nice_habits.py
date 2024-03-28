@@ -1,4 +1,5 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import CreateAPIView, \
+    ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from habits.models import NiceHabit
@@ -20,7 +21,10 @@ class NiceHabitCreateAPIView(CreateAPIView):
 
 
 class NiceHabitListAPIView(ListAPIView):
-    """Класс получения списка приятных привычек, доступных только для владельца"""
+    """
+    Класс получения списка приятных привычек,
+    доступных только для владельца
+    """
     serializer_class = NiceHabitSerializer
     queryset = NiceHabit.objects.all()
     pagination_class = HabitsPagination

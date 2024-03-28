@@ -9,10 +9,12 @@ class HabitsValidator:
     def __call__(self, value):
         if value.get('associated_nice_habit') and value.get('reward'):
             raise ValidationError(
-                'Можно выбрать только связанную приятную привычку или награду.')
+                'Можно выбрать только связанную '
+                'приятную привычку или награду.')
         if not value.get('associated_nice_habit') and not value.get('reward'):
             raise ValidationError(
-                'Нужно выбрать либо связанную приятную привычку, либо награду.')
+                'Нужно выбрать либо связанную приятную привычку, '
+                'либо награду.')
 
 
 class TimeHabitsValidator:
@@ -26,7 +28,8 @@ class TimeHabitsValidator:
     def __call__(self, value):
         time = value.get(self.field)
         if time is not None and time > self.max_time:
-            raise ValidationError('Превышено время выполнения привычки. Максимальное время - 2 минуты.')
+            raise ValidationError('Превышено время выполнения привычки. '
+                                  'Максимальное время - 2 минуты.')
 
 
 class SignAssociatedNiceHabitsValidator:
@@ -39,7 +42,8 @@ class SignAssociatedNiceHabitsValidator:
         nice_habit = value.get(self.field)
         if nice_habit:
             if nice_habit.sign_nice_habit is False:
-                raise ValidationError('Связанная привычка должна обладать признаком приятной привычки.')
+                raise ValidationError('Связанная привычка должна '
+                                      'обладать признаком приятной привычки.')
 
 
 INTERVAL_MAPPING = {
@@ -63,7 +67,8 @@ class IntervalHabitsValidator:
         interval = value.get(self.field)
         interval_days = INTERVAL_MAPPING.get(interval, 0)
         if interval_days > 7:
-            raise ValidationError('Периодичность выполнения привычки должна быть не реже одного раза в неделю.')
+            raise ValidationError('Периодичность выполнения привычки '
+                                  'должна быть не реже одного раза в неделю.')
 
 
 class SignNiceHabitsValidator:
@@ -72,4 +77,5 @@ class SignNiceHabitsValidator:
     def __call__(self, value):
         if value.get('sign_nice_habit'):
             if value.get('associated_nice_habit') or value.get('reward'):
-                raise ValidationError('У приятной привычки не может быть вознаграждения или связанной привычки.')
+                raise ValidationError('У приятной привычки не может быть '
+                                      'вознаграждения или связанной привычки.')

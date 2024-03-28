@@ -195,8 +195,7 @@ TELEGRAM_BOT_API_KEY = os.getenv('TELEGRAM_BOT_API_KEY')
 CELERY_BEAT_SCHEDULE = {
      'telegram_notifications': {
         'task': 'habits.tasks.send_message_about_habits_time',
-        'schedule': timedelta(hours=1),  # 8:00
-        # 'schedule': crontab(hour=8, minute=0),  # Уведомление каждый день в 8:00
+        'schedule': timedelta(hours=1),
      },
 }
 

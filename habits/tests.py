@@ -343,7 +343,8 @@ class HabitsTestCase(APITestCase):
 
         self.assertEqual(
             response.json(),
-            {'non_field_errors': ['У приятной привычки не может быть вознаграждения или связанной привычки.']}
+            {'non_field_errors':
+                 ['У приятной привычки не может быть вознаграждения или связанной привычки.']}
         )
 
 
@@ -426,7 +427,8 @@ class NiceHabitsTestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
 
         response = self.client.get(
-            reverse('habits:nice_habits_detail', kwargs={'pk': self.nice_habit.id})
+            reverse('habits:nice_habits_detail',
+                    kwargs={'pk': self.nice_habit.id})
         )
 
         self.assertEquals(
@@ -452,7 +454,8 @@ class NiceHabitsTestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
 
         response = self.client.delete(
-            reverse('habits:nice_habits_delete', kwargs={'pk': self.nice_habit.id})
+            reverse('habits:nice_habits_delete',
+                    kwargs={'pk': self.nice_habit.id})
         )
 
         self.assertEquals(
@@ -470,7 +473,8 @@ class NiceHabitsTestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
 
         response = self.client.patch(
-            reverse('habits:nice_habits_update', kwargs={'pk': self.nice_habit.id}),
+            reverse('habits:nice_habits_update',
+                    kwargs={'pk': self.nice_habit.id}),
             data=updated_data
         )
 

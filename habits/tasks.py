@@ -57,3 +57,4 @@ def send_message_about_habits_time():
             process_user_habits(habit.id)
             start_date_habit = start_date_habit + timedelta(days=INTERVAL_MAPPING.get(habit.interval, 0))
             habit.save()
+
