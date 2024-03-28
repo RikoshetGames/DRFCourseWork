@@ -6,7 +6,6 @@ from habits.validators import (TimeHabitsValidator, HabitsValidator, SignAssocia
                                IntervalHabitsValidator, SignNiceHabitsValidator)
 
 
-
 class HabitsSerializer(serializers.ModelSerializer):
     """Сериализатор привычек для модели Habits"""
     nice_habit = NiceHabitSerializer(many=True, read_only=True)

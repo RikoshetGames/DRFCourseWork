@@ -29,7 +29,7 @@ class NiceHabitListAPIView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         nice_habits_list = super().get_queryset()
-        return nice_habits_list.filter(user=user)
+        return nice_habits_list.filter(owner=user)
 
 
 class NiceHabitDetailAPIView(RetrieveAPIView):

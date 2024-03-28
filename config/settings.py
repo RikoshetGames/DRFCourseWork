@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
+    'django_celery_beat',
 
     'users',
     'habits',
@@ -165,12 +166,38 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://read-only.example.com/",
-    "https://read-and-write.example.com/",
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://read-and-write.example.com/",
+    "https://read-and-write.example.com",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+
+# URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+
+# Часовой пояс для работы Celery
+CELERY_TIMEZONE = TIME_ZONE
+
+# Флаг отслеживания выполнения задач
+CELERY_TASK_TRACK_STARTED = True
+
+# Максимальное время на выполнение задачи
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+TELEGRAM_BOT_API_KEY = os.getenv('TELEGRAM_BOT_API_KEY')
+
+CELERY_BEAT_SCHEDULE = {
+     'telegram_notifications': {
+        'task': 'habits.tasks.send_message_about_habits_time',
+        'schedule': timedelta(hours=1),  # 8:00
+        # 'schedule': crontab(hour=8, minute=0),  # Уведомление каждый день в 8:00
+     },
+}
+
+CELERY_IMPORTS = ["habits.tasks"]

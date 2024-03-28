@@ -25,7 +25,7 @@ class TimeHabitsValidator:
 
     def __call__(self, value):
         time = value.get(self.field)
-        if time > self.max_time:
+        if time is not None and time > self.max_time:
             raise ValidationError('Превышено время выполнения привычки. Максимальное время - 2 минуты.')
 
 
