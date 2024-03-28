@@ -134,7 +134,10 @@ class UserTestCase(APITestCase):
         )
 
     def test_delete_user_not_owner(self):
-        """Тестирование удаления пользователя, не являющегося владельцем учетной записи"""
+        """
+        Тестирование удаления пользователя,
+        не являющегося владельцем учетной записи
+        """
 
         new_user = User.objects.create(
             name="test",
@@ -162,7 +165,10 @@ class UserTestCase(APITestCase):
         )
 
     def test_unauthorized__list_user(self):
-        """Тестирование доступа к списку пользователей не авторизованному пользователю"""
+        """
+        Тестирование доступа к списку
+        пользователей не авторизованному пользователю
+        """
 
         response = self.client.get(
             reverse('users:users_list')
